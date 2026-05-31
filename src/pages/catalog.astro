@@ -1,0 +1,251 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const allWines = await getCollection('catalog');
+
+// Sort: Available first, then by vintage descending
+const wines = allWines.sort((a, b) => {
+  if (a.data.status === b.data.status) return b.data.vintage - a.data.vintage;
+  return a.data.status === 'Available' ? -1 : 1;
+});
+
+const availableCount = wines.filter(w => w.data.status === 'Available').length;
+const reservedCount  = wines.filter(w => w.data.status === 'Reserved').length;
+---
+
+<Layout
+  title="Bulk Wine Technical Catalog"
+  description="Browse Formigal Wines' current bulk inventory. Full technical specifications including alcohol %, pH, total acidity, volume, and packaging options. Request a specification sheet or quote."
+>
+
+  <!-- ══════════════════════════════════════
+       PAGE HEADER
+  ══════════════════════════════════════ -->
+  <section class="bg-zinc-900 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-block text-red-400 text-xs font-bold uppercase tracking-widest mb-3">
+          Bulk Inventory · Updated Seasonally
+        </span>
+        <h1 class="font-serif text-4xl sm:text-5xl font-bold text-white mb-4">
+          Technical Catalog
+        </h1>
+        <p class="text-zinc-400 text-base leading-relaxed">
+          All lots below are available for immediate or forward-contract purchase. Each listing includes full technical parameters. Certificates of Analysis (COA) and specification sheets available upon request to verified trade buyers.
+        </p>
+      </div>
+
+      <!-- Summary Counts -->
+      <div class="mt-8 flex flex-wrap gap-4">
+        <div class="flex items-center gap-2.5 bg-zinc-800 rounded-lg px-4 py-2.5 border border-zinc-700">
+          <span class="w-2 h-2 bg-emerald-400 rounded-full"></span>
+          <span class="text-sm text-zinc-300 font-medium">{availableCount} lot{availableCount !== 1 ? 's' : ''} Available</span>
+        </div>
+        <div class="flex items-center gap-2.5 bg-zinc-800 rounded-lg px-4 py-2.5 border border-zinc-700">
+          <span class="w-2 h-2 bg-amber-400 rounded-full"></span>
+          <span class="text-sm text-zinc-300 font-medium">{reservedCount} lot{reservedCount !== 1 ? 's' : ''} Reserved</span>
+        </div>
+        <div class="flex items-center gap-2.5 bg-zinc-800 rounded-lg px-4 py-2.5 border border-zinc-700">
+          <span class="text-sm text-zinc-300 font-medium">{wines.length} total lots on record</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       NOTICE BAR
+  ══════════════════════════════════════ -->
+  <div class="bg-wine-950/10 border-b border-wine-950/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-3">
+      <svg class="w-4 h-4 text-wine-950 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+      </svg>
+      <p class="text-xs text-zinc-600">
+        <strong class="text-zinc-800 font-semibold">Trade buyers only.</strong> Specifications are indicative. Final COA issued at time of dispatch. Minimum order volumes apply. All prices quoted per formal RFP.
+      </p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       CATALOG GRID
+  ══════════════════════════════════════ -->
+  <section class="bg-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      {wines.length === 0 ? (
+        <div class="text-center py-24">
+          <p class="text-zinc-400 text-base">No lots currently listed. Please check back or contact us directly.</p>
+          <a href="/contact" class="mt-4 inline-block text-wine-950 font-semibold text-sm underline">Submit a forward inquiry →</a>
+        </div>
+      ) : (
+        <div class="flex flex-col gap-6">
+          {wines.map((wine) => {
+            const d = wine.data;
+            const isAvailable = d.status === 'Available';
+            return (
+              <article class={`rounded-xl border shadow-sm overflow-hidden transition-shadow hover:shadow-md ${
+                isAvailable ? 'border-zinc-200 bg-white' : 'border-zinc-200 bg-zinc-50/50'
+              }`}>
+
+                <!-- Card Top Bar -->
+                <div class={`px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+                  isAvailable ? 'bg-zinc-900' : 'bg-zinc-700'
+                }`}>
+                  <div class="flex items-center gap-4">
+                    <!-- Status Badge -->
+                    <span class={`flex-shrink-0 px-3 py-1 rounded text-xs font-bold uppercase tracking-widest ${
+                      isAvailable
+                        ? 'bg-emerald-500/20 text-emerald-400'
+                        : 'bg-amber-500/20 text-amber-400'
+                    }`}>
+                      {d.status}
+                    </span>
+                    <!-- Wine Identity -->
+                    <div>
+                      <div class="text-zinc-400 text-xs font-mono">
+                        {d.vintage} · {d.varietal} · {d.region}
+                      </div>
+                      <h2 class="font-serif text-lg font-bold text-white leading-snug">{d.title}</h2>
+                    </div>
+                  </div>
+                  <!-- Volume -->
+                  <div class="flex-shrink-0 text-right">
+                    <div class="text-zinc-400 text-xs uppercase tracking-wide font-medium">Volume Available</div>
+                    <div class="text-white text-xl font-bold font-serif">{d.volumeAvailable}</div>
+                  </div>
+                </div>
+
+                <!-- Card Body -->
+                <div class="p-6">
+                  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                    <!-- Technical Specs Table -->
+                    <div class="lg:col-span-2">
+                      <h3 class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-4">Technical Parameters</h3>
+                      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        {[
+                          { label: 'Alcohol',        value: `${d.alcoholPercent}% vol`,  highlight: false },
+                          { label: 'pH',             value: String(d.pH),               highlight: false },
+                          { label: 'Total Acidity',  value: `${d.totalAcidity} g/L`,    highlight: false },
+                          { label: 'Residual Sugar', value: d.residualSugar != null ? `${d.residualSugar} g/L` : 'N/A', highlight: false },
+                          { label: 'Tannin Level',   value: d.tanninLevel ?? 'N/A',      highlight: false },
+                          { label: 'Color',          value: d.colorIntensity ?? 'N/A',  highlight: false },
+                        ].map(spec => (
+                          <div class="bg-zinc-50 rounded-lg px-4 py-3 border border-zinc-100">
+                            <dt class="text-xs text-zinc-400 font-medium uppercase tracking-wide">{spec.label}</dt>
+                            <dd class="text-base font-bold text-zinc-900 mt-1 font-mono">{spec.value}</dd>
+                          </div>
+                        ))}
+                      </div>
+
+                      <!-- Description -->
+                      <p class="mt-5 text-sm text-zinc-500 leading-relaxed">{d.description}</p>
+
+                      <!-- Packaging Options -->
+                      {d.packagingOptions && d.packagingOptions.length > 0 && (
+                        <div class="mt-5">
+                          <h4 class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-2">Packaging Options</h4>
+                          <div class="flex flex-wrap gap-2">
+                            {d.packagingOptions.map(opt => (
+                              <span class="px-3 py-1 bg-zinc-100 text-zinc-600 text-xs rounded-md border border-zinc-200 font-medium">
+                                {opt}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    <!-- Sidebar: Certifications + Actions -->
+                    <div class="flex flex-col justify-between gap-6">
+
+                      <!-- Certifications -->
+                      {d.certifications && d.certifications.length > 0 && (
+                        <div>
+                          <h4 class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-3">Certifications</h4>
+                          <div class="flex flex-wrap gap-2">
+                            {d.certifications.map(cert => (
+                              <span class="px-2.5 py-1 bg-white border border-zinc-200 text-zinc-600 text-xs rounded font-mono">
+                                {cert}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      <!-- Min Order -->
+                      {d.minOrderVolume && (
+                        <div class="bg-zinc-50 rounded-lg p-4 border border-zinc-100">
+                          <dt class="text-xs text-zinc-400 font-medium uppercase tracking-wide mb-1">Minimum Order</dt>
+                          <dd class="text-base font-bold text-zinc-900 font-mono">{d.minOrderVolume}</dd>
+                        </div>
+                      )}
+
+                      <!-- CTA Buttons -->
+                      <div class="flex flex-col gap-3">
+                        <a
+                          href={`/contact?varietal=${encodeURIComponent(d.varietal)}&vintage=${d.vintage}`}
+                          class="block w-full text-center px-4 py-3 bg-wine-950 text-white text-sm font-semibold rounded-md hover:bg-wine-800 transition-colors"
+                        >
+                          Request Spec Sheet / Quote
+                        </a>
+                        {!isAvailable && (
+                          <a
+                            href={`/contact?varietal=${encodeURIComponent(d.varietal)}&vintage=${d.vintage + 1}&type=forward`}
+                            class="block w-full text-center px-4 py-2.5 border border-zinc-300 text-zinc-600 text-sm font-medium rounded-md hover:border-zinc-400 hover:text-zinc-900 transition-colors"
+                          >
+                            Register Interest — Next Vintage
+                          </a>
+                        )}
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </article>
+            );
+          })}
+        </div>
+      )}
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CUSTOM LOT INQUIRY CTA
+  ══════════════════════════════════════ -->
+  <section class="bg-zinc-50 py-16 border-t border-zinc-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-zinc-900 rounded-2xl p-10 sm:p-14 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+        <div class="max-w-xl">
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-white mb-3">
+            Can't find what you need?
+          </h2>
+          <p class="text-zinc-400 text-sm leading-relaxed">
+            We produce bespoke lots to buyer specification — custom varietals, blends, alcohol adjustment, or organic-certified grapes. Submit a forward contract inquiry and our production team will assess feasibility for the upcoming harvest.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-4 flex-shrink-0">
+          <a
+            href="/contact"
+            class="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-wine-950 font-semibold text-sm rounded-md hover:bg-zinc-100 transition-colors"
+          >
+            Submit Custom RFP
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a
+            href="/process"
+            class="inline-flex items-center gap-2 px-7 py-3.5 border border-zinc-600 text-white font-semibold text-sm rounded-md hover:border-zinc-400 transition-colors"
+          >
+            Our Capabilities
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

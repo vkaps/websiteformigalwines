@@ -1,0 +1,363 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const allWines = await getCollection('catalog');
+const featuredWines = allWines.filter(w => w.data.featured).slice(0, 3);
+---
+
+<Layout
+  title="Premium Bulk Wine Supplier"
+  description="Formigal Wines supplies ISO-certified bulk wine from Portugal's Douro Valley to brands, merchants, and distributors worldwide. Technical specs, contract volumes, full COA."
+>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section class="bg-wine-950 relative overflow-hidden">
+    <!-- Decorative circles -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-white opacity-5"></div>
+      <div class="absolute -bottom-32 -left-16 w-80 h-80 rounded-full bg-white opacity-5"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full border border-white opacity-5"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 lg:py-40">
+      <div class="max-w-3xl">
+        <!-- Eyebrow -->
+        <div class="flex items-center gap-3 mb-7">
+          <span class="h-px w-10 bg-red-400 block"></span>
+          <span class="text-red-300 text-xs font-semibold uppercase tracking-widest">
+            B2B Bulk Wine Supplier · Douro Valley, Portugal
+          </span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6">
+          Premium Bulk Wine.<br />
+          <span class="text-red-300">Certified. Scalable.<br class="hidden lg:block" /> Contract-Ready.</span>
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="text-lg text-zinc-300 leading-relaxed mb-10 max-w-2xl">
+          We supply technically-verified, high-quality bulk wine to private-label brands, wine merchants, and large-scale distributors. Full COA documentation, flexible packaging, and reliable volume from 5,000 to 500,000 liters.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap items-center gap-4">
+          <a
+            href="/catalog"
+            class="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-wine-950 font-semibold text-sm rounded-md hover:bg-zinc-100 transition-colors shadow-lg"
+          >
+            View Bulk Catalog
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a
+            href="/contact"
+            class="inline-flex items-center gap-2 px-7 py-3.5 border border-zinc-500 text-white font-semibold text-sm rounded-md hover:border-white hover:bg-white/5 transition-colors"
+          >
+            Submit RFP / Inquiry
+          </a>
+        </div>
+
+        <!-- Trust Indicators -->
+        <div class="mt-12 flex flex-wrap items-center gap-6 pt-8 border-t border-white/10">
+          {['ISO 22000 Certified', 'OIV Compliant', 'Export-Ready Documentation', '35+ Active Markets'].map(badge => (
+            <div class="flex items-center gap-2 text-xs text-zinc-400">
+              <svg class="w-4 h-4 text-red-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              {badge}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       KEY METRICS BANNER
+  ══════════════════════════════════════ -->
+  <section class="bg-zinc-900 py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        {[
+          { value: '500K+',  label: 'Liters Tank Capacity',     sub: 'Stainless steel, temp-controlled' },
+          { value: '3.5M',   label: 'Liters Annual Output',      sub: 'Average over 5-year period' },
+          { value: '35+',    label: 'Export Markets',            sub: 'EU, North America, Asia, MENA' },
+          { value: '25',     label: 'Years in Operation',        sub: 'Founded 1999, Pinhão, Portugal' },
+        ].map(stat => (
+          <div class="text-center">
+            <div class="font-serif text-4xl lg:text-5xl font-bold text-white mb-1">{stat.value}</div>
+            <div class="text-zinc-300 text-sm font-semibold uppercase tracking-wide mb-1">{stat.label}</div>
+            <div class="text-zinc-500 text-xs">{stat.sub}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       INFRASTRUCTURE AT A GLANCE
+  ══════════════════════════════════════ -->
+  <section class="bg-zinc-50 py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <span class="inline-block text-wine-950 text-xs font-bold uppercase tracking-widest mb-3">Our Facilities</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-zinc-900 mb-4">Infrastructure at a Glance</h2>
+        <p class="text-zinc-500 text-base max-w-xl mx-auto">
+          Built for industrial-scale production, rigorous quality control, and flexible export logistics.
+        </p>
+      </div>
+
+      <!-- Three Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- Tank Capacity -->
+        <div class="bg-white rounded-xl p-8 border border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 bg-wine-50 rounded-lg flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-wine-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            </svg>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-zinc-900 mb-3">Tank Storage Capacity</h3>
+          <p class="text-zinc-500 text-sm leading-relaxed mb-6">
+            Over 500,000 liters of temperature-controlled, stainless steel 316L storage capacity, with individual tanks ranging from 5,000 L to 100,000 L. All tanks fitted with nitrogen-blanketing and real-time monitoring.
+          </p>
+          <ul class="space-y-2">
+            {['42 individual stainless steel tanks', 'Temperature range: 4°C – 25°C', 'Nitrogen / argon blanketing system', 'Real-time pressure & temp monitoring'].map(item => (
+              <li class="flex items-start gap-2 text-xs text-zinc-600">
+                <span class="w-1.5 h-1.5 bg-wine-950 rounded-full mt-1.5 flex-shrink-0"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Laboratory Testing -->
+        <div class="bg-white rounded-xl p-8 border border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 bg-wine-50 rounded-lg flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-wine-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-zinc-900 mb-3">In-House Laboratory</h3>
+          <p class="text-zinc-500 text-sm leading-relaxed mb-6">
+            Our ISO-accredited laboratory conducts full analytical profiles at every stage of production — from grape reception to final dispatch. Certificate of Analysis (COA) provided with every shipment.
+          </p>
+          <ul class="space-y-2">
+            {['pH, TA, VA, and free/total SO₂ analysis', 'Residual sugar & alcohol determination', 'Microbiological and heavy metals screening', 'Sensory evaluation by certified panel', 'Full COA with every dispatch'].map(item => (
+              <li class="flex items-start gap-2 text-xs text-zinc-600">
+                <span class="w-1.5 h-1.5 bg-wine-950 rounded-full mt-1.5 flex-shrink-0"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Logistics -->
+        <div class="bg-white rounded-xl p-8 border border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 bg-wine-50 rounded-lg flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-wine-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-zinc-900 mb-3">Logistics &amp; Export</h3>
+          <p class="text-zinc-500 text-sm leading-relaxed mb-6">
+            Direct access to road, rail, and port infrastructure for cost-efficient bulk wine export. We handle EUR.1 certificates, EUR.MED preferential origin, Phytosanitary certificates, and VI-1 documentation.
+          </p>
+          <ul class="space-y-2">
+            {['Flexitank loading: 20,000–24,000 L per container', 'IBC totes: 1,000 L food-grade', 'Road tanker: up to 30,000 L', 'Barrels: 225 L French & American oak', 'DDP, DAP, FOB, CIF — any Incoterm'].map(item => (
+              <li class="flex items-start gap-2 text-xs text-zinc-600">
+                <span class="w-1.5 h-1.5 bg-wine-950 rounded-full mt-1.5 flex-shrink-0"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       WHY FORMIGAL (VALUE PROPS)
+  ══════════════════════════════════════ -->
+  <section class="bg-white py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Left: Copy -->
+        <div>
+          <span class="inline-block text-wine-950 text-xs font-bold uppercase tracking-widest mb-3">Why Trade with Us</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-zinc-900 mb-6 leading-tight">
+            Industrial-scale supply.<br />
+            <span class="text-wine-950">Zero compromise on quality.</span>
+          </h2>
+          <p class="text-zinc-500 text-base leading-relaxed mb-8">
+            Our B2B-only model means every aspect of our operation is optimised for trade buyers — from contractual pricing frameworks to priority dispatch slots for contracted volumes. We don't compete with your brand; we supply it.
+          </p>
+          <a
+            href="/process"
+            class="inline-flex items-center gap-2 text-wine-950 font-semibold text-sm hover:gap-3 transition-all"
+          >
+            See how we produce
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Right: Feature Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {[
+            {
+              icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+              title: 'Certified Quality',
+              desc: 'ISO 22000, FSSC 22000, and OIV-compliant processes with full audit trail.',
+            },
+            {
+              icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+              title: 'Rapid Turnaround',
+              desc: 'Flexitank loading within 72 hours of order confirmation on in-stock lots.',
+            },
+            {
+              icon: 'M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3',
+              title: 'Legal Compliance',
+              desc: 'EUR.1, EUR.MED, VI-1, and phytosanitary documentation handled in-house.',
+            },
+            {
+              icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z',
+              title: 'Dedicated Account Manager',
+              desc: 'A single point of contact for all orders, documentation, and technical queries.',
+            },
+          ].map(item => (
+            <div class="flex gap-4">
+              <div class="w-10 h-10 bg-wine-50 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-5 h-5 text-wine-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d={item.icon} />
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-zinc-900 text-sm mb-1">{item.title}</h4>
+                <p class="text-zinc-500 text-xs leading-relaxed">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CURRENT AVAILABILITY GRID
+  ══════════════════════════════════════ -->
+  <section class="bg-zinc-50 py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
+        <div>
+          <span class="inline-block text-wine-950 text-xs font-bold uppercase tracking-widest mb-2">Current Inventory</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-zinc-900">Available Bulk Batches</h2>
+        </div>
+        <a
+          href="/catalog"
+          class="inline-flex items-center gap-2 text-wine-950 font-semibold text-sm flex-shrink-0 hover:gap-3 transition-all"
+        >
+          Full technical catalog
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {featuredWines.map((wine) => {
+          const { title, vintage, varietal, region, volumeAvailable, alcoholPercent, pH, totalAcidity, status } = wine.data;
+          const isAvailable = status === 'Available';
+          return (
+            <article class="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+              <!-- Card Header -->
+              <div class="bg-zinc-900 px-6 py-4 flex items-start justify-between gap-3">
+                <div>
+                  <span class="text-xs text-zinc-400 font-mono">{vintage} · {varietal}</span>
+                  <h3 class="font-serif text-base font-bold text-white mt-0.5 leading-snug">{title}</h3>
+                </div>
+                <span class={`flex-shrink-0 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wide ${
+                  isAvailable
+                    ? 'bg-emerald-500/20 text-emerald-400'
+                    : 'bg-amber-500/20 text-amber-400'
+                }`}>
+                  {status}
+                </span>
+              </div>
+
+              <!-- Specs Grid -->
+              <div class="px-6 py-5 flex-1">
+                <dl class="grid grid-cols-2 gap-x-6 gap-y-4">
+                  {[
+                    { label: 'Region',    value: region },
+                    { label: 'Volume',    value: volumeAvailable },
+                    { label: 'Alcohol',   value: `${alcoholPercent}% vol` },
+                    { label: 'pH',        value: String(pH) },
+                    { label: 'Total Acidity', value: `${totalAcidity} g/L` },
+                  ].map(spec => (
+                    <div>
+                      <dt class="text-xs text-zinc-400 font-medium uppercase tracking-wide">{spec.label}</dt>
+                      <dd class="text-sm text-zinc-800 font-semibold mt-0.5">{spec.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+
+              <!-- CTA -->
+              <div class="px-6 pb-5">
+                <a
+                  href="/contact"
+                  class="block w-full text-center px-4 py-2.5 border border-wine-950 text-wine-950 text-sm font-semibold rounded-md hover:bg-wine-950 hover:text-white transition-colors"
+                >
+                  Request Spec Sheet / Quote
+                </a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CTA BANNER
+  ══════════════════════════════════════ -->
+  <section class="bg-wine-950 py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-4">
+        Ready to source your next bulk lot?
+      </h2>
+      <p class="text-zinc-300 text-base max-w-xl mx-auto mb-8">
+        Submit a trade inquiry with your target varietal, volume, and packaging preference. Our commercial team responds within one business day.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-wine-950 font-semibold text-sm rounded-md hover:bg-zinc-100 transition-colors shadow-lg"
+        >
+          Submit Trade Inquiry
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+        <a
+          href="/catalog"
+          class="inline-flex items-center gap-2 px-8 py-3.5 border border-zinc-500 text-white font-semibold text-sm rounded-md hover:border-white transition-colors"
+        >
+          Browse Full Catalog
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

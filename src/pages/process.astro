@@ -1,0 +1,416 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Transformation & Quality Process"
+  description="How Formigal Wines sources grapes, manages fermentation, conducts quality assurance, and stores bulk wine. ISO 22000 certified. Full supply chain traceability."
+>
+
+  <!-- ══════════════════════════════════════
+       PAGE HEADER
+  ══════════════════════════════════════ -->
+  <section class="bg-zinc-900 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-block text-red-400 text-xs font-bold uppercase tracking-widest mb-3">
+          From Vineyard to Flexitank
+        </span>
+        <h1 class="font-serif text-4xl sm:text-5xl font-bold text-white mb-4">
+          Transformation &amp; Quality
+        </h1>
+        <p class="text-zinc-400 text-base leading-relaxed">
+          Every liter of bulk wine we ship carries a documented chain of custody — from partner vineyard to dispatch. Here is how we turn premium Douro and Alentejo grapes into technically-certified, trade-ready bulk wine.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       PROCESS TIMELINE
+  ══════════════════════════════════════ -->
+  <section class="bg-white py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-0">
+
+        <!-- Step 1: Grape Sourcing -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center py-16 border-b border-zinc-100">
+          <!-- Step Number & Copy -->
+          <div>
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-wine-950 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="font-serif text-xl font-bold text-white">01</span>
+              </div>
+              <span class="text-wine-950 text-xs font-bold uppercase tracking-widest">Grape Sourcing</span>
+            </div>
+            <h2 class="font-serif text-3xl font-bold text-zinc-900 mb-4">
+              Contracted Partner Vineyards
+            </h2>
+            <p class="text-zinc-500 text-base leading-relaxed mb-6">
+              We work exclusively with a curated network of contracted partner vineyards in the Douro Valley and Alentejo. Each vineyard partner undergoes an annual certification audit and phytosanitary inspection. Contractual agreements define varietal composition, yield caps, harvest dates, and minimum Brix at intake.
+            </p>
+            <ul class="space-y-3">
+              {[
+                'Multi-year supply contracts with 18 partner estates',
+                'Mandatory yield cap: 8,000 kg/ha for premium lots',
+                'Harvest notification and pre-approval protocol',
+                'Organic-certified grape sources available on request',
+                'Traceability to individual parcel level on all lots',
+              ].map(item => (
+                <li class="flex items-start gap-3 text-sm text-zinc-600">
+                  <svg class="w-4 h-4 text-wine-950 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <!-- Info Panel -->
+          <div class="bg-zinc-50 rounded-2xl p-8 border border-zinc-200">
+            <h4 class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-6">Intake Analysis — At Reception</h4>
+            <div class="grid grid-cols-2 gap-4">
+              {[
+                { param: 'Brix / Potential Alcohol', target: '20–27 °Bx' },
+                { param: 'Temperature at Intake',    target: '≤ 18°C' },
+                { param: 'Berry pH',                  target: '3.2–3.8' },
+                { param: 'Visual Inspection',         target: 'No rot, no MOG' },
+                { param: 'Phytosanitary Status',      target: 'Certified clean' },
+                { param: 'Lot Traceability Code',     target: 'Assigned on arrival' },
+              ].map(row => (
+                <div class="bg-white rounded-lg p-4 border border-zinc-100">
+                  <dt class="text-xs text-zinc-400 font-medium leading-tight">{row.param}</dt>
+                  <dd class="text-sm font-bold text-zinc-800 mt-1 font-mono">{row.target}</dd>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Harvest & Pressing -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center py-16 border-b border-zinc-100">
+          <div class="lg:order-2">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-wine-950 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="font-serif text-xl font-bold text-white">02</span>
+              </div>
+              <span class="text-wine-950 text-xs font-bold uppercase tracking-widest">Reception &amp; Processing</span>
+            </div>
+            <h2 class="font-serif text-3xl font-bold text-zinc-900 mb-4">
+              Destemming, Crushing &amp; Pressing
+            </h2>
+            <p class="text-zinc-500 text-base leading-relaxed mb-6">
+              Grapes are received at our chilled reception bay and processed within two hours of delivery. Red varietals undergo de-stemming and crushing before maceration; white and rosé lots go directly to pneumatic press for clean juice separation. All equipment is stainless steel and CIP-cleaned between lots.
+            </p>
+            <ul class="space-y-3">
+              {[
+                'Chilled reception bay: grapes held at 8–12°C',
+                'Pneumatic presses for white and rosé: 0.5–2.0 bar',
+                'Roller crusher and destemmer for red varietals',
+                'SO₂ addition calibrated per lot acidity and oxidation risk',
+                'Juice turbidity measurement; racking to fermentation tanks',
+              ].map(item => (
+                <li class="flex items-start gap-3 text-sm text-zinc-600">
+                  <svg class="w-4 h-4 text-wine-950 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="lg:order-1 bg-zinc-50 rounded-2xl p-8 border border-zinc-200">
+            <h4 class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-4">Processing Capacity</h4>
+            <div class="space-y-4">
+              {[
+                { label: 'Daily Grape Reception',  value: '400 tonnes/day', icon: '⚙' },
+                { label: 'White Press Capacity',   value: '3 × 100 hl presses', icon: '🔵' },
+                { label: 'Red Fermentation Tanks', value: '24 tanks × 20,000 L', icon: '🔴' },
+                { label: 'Horizontal Rotary Tank', value: '2 × 50,000 L', icon: '🔄' },
+                { label: 'CIP Cleaning Cycle',     value: 'Between every lot', icon: '✓' },
+              ].map(row => (
+                <div class="flex items-center justify-between py-3 border-b border-zinc-100 last:border-0">
+                  <span class="text-sm text-zinc-600">{row.label}</span>
+                  <span class="text-sm font-semibold text-zinc-900 font-mono">{row.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Fermentation -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center py-16 border-b border-zinc-100">
+          <div>
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-wine-950 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="font-serif text-xl font-bold text-white">03</span>
+              </div>
+              <span class="text-wine-950 text-xs font-bold uppercase tracking-widest">Fermentation</span>
+            </div>
+            <h2 class="font-serif text-3xl font-bold text-zinc-900 mb-4">
+              Controlled Alcoholic &amp; Malolactic Fermentation
+            </h2>
+            <p class="text-zinc-500 text-base leading-relaxed mb-6">
+              Primary fermentation is carried out in stainless steel jacketed tanks under strict temperature control. Yeast selection is matched to varietal profile and target alcohol. Malolactic fermentation (MLF) is managed selectively — mandatory for structured reds, optional for whites depending on buyer specification.
+            </p>
+            <div class="grid grid-cols-2 gap-4">
+              {[
+                { label: 'Whites / Rosé',    temp: '14–16°C',  duration: '10–18 days' },
+                { label: 'Red Varietals',     temp: '18–22°C',  duration: '12–20 days' },
+                { label: 'MLF (Reds)',        temp: '18–20°C',  duration: '3–6 weeks'  },
+                { label: 'Post-MLF Stabilisation', temp: '10–12°C', duration: '4–6 weeks' },
+              ].map(row => (
+                <div class="bg-zinc-50 rounded-lg p-4 border border-zinc-100">
+                  <div class="text-xs font-bold text-zinc-900 mb-2">{row.label}</div>
+                  <div class="text-xs text-zinc-500">Temp: <span class="font-mono text-zinc-700">{row.temp}</span></div>
+                  <div class="text-xs text-zinc-500">Duration: <span class="font-mono text-zinc-700">{row.duration}</span></div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="bg-wine-950 rounded-2xl p-8 text-white">
+            <h4 class="text-xs font-bold text-red-300 uppercase tracking-widest mb-6">Yeast &amp; Nutrition Management</h4>
+            <ul class="space-y-4">
+              {[
+                { title: 'Selected Yeast Strains',  desc: 'Saccharomyces cerevisiae selected per varietal — aroma-neutral, high-converter, or ester-producing strains.' },
+                { title: 'Nitrogen Management',      desc: 'YAN analysis at juice stage; DAP and organic nitrogen additions as required to prevent H₂S production.' },
+                { title: 'Temperature Monitoring',   desc: 'Real-time tank temperature sensors with automatic glycol cooling activation. Alerts logged to LIMS.' },
+                { title: 'Daily Analytics',          desc: 'Density/Brix and temperature recorded twice daily per tank throughout fermentation. Full records retained.' },
+              ].map(item => (
+                <li class="flex gap-4">
+                  <span class="w-1.5 h-1.5 bg-red-400 rounded-full mt-2 flex-shrink-0"></span>
+                  <div>
+                    <div class="text-sm font-semibold mb-0.5">{item.title}</div>
+                    <div class="text-xs text-zinc-300 leading-relaxed">{item.desc}</div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Step 4: Quality Assurance -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center py-16 border-b border-zinc-100">
+          <div class="lg:order-2">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-wine-950 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="font-serif text-xl font-bold text-white">04</span>
+              </div>
+              <span class="text-wine-950 text-xs font-bold uppercase tracking-widest">Quality Assurance</span>
+            </div>
+            <h2 class="font-serif text-3xl font-bold text-zinc-900 mb-4">
+              In-House Laboratory &amp; Sensory QC
+            </h2>
+            <p class="text-zinc-500 text-base leading-relaxed mb-6">
+              Our ISO-accredited laboratory operates independently from the winemaking team, running both routine and exception-based analysis at every stage. Every bulk lot is approved by the QA Manager before racking to storage. No lot ships without a signed Certificate of Analysis.
+            </p>
+            <ul class="space-y-3">
+              {[
+                'HPLC analysis for organic acids and residual sugar',
+                'Enzymatic alcohol determination (±0.1% vol accuracy)',
+                'Free and bound SO₂ by Ripper titration',
+                'Turbidity and color intensity by spectrophotometry',
+                'Microbiological plating: TVC, yeast, lactic bacteria',
+                'Heavy metals panel: lead, cadmium, arsenic, mercury',
+                'Sensory panel: 5 trained assessors per lot',
+              ].map(item => (
+                <li class="flex items-start gap-3 text-sm text-zinc-600">
+                  <svg class="w-4 h-4 text-wine-950 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="lg:order-1 space-y-4">
+            <div class="bg-zinc-50 rounded-2xl p-6 border border-zinc-200">
+              <h4 class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-4">COA — Standard Parameters Reported</h4>
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-zinc-200">
+                    <th class="text-left text-xs text-zinc-500 font-medium pb-2">Parameter</th>
+                    <th class="text-right text-xs text-zinc-500 font-medium pb-2">Typical Range</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-100">
+                  {[
+                    ['Alcohol (%vol)',           '11.5 – 15.0'],
+                    ['pH',                       '3.20 – 3.80'],
+                    ['Total Acidity (g/L H₂T)',  '4.5 – 7.5'  ],
+                    ['Volatile Acidity (g/L)',   '< 0.60'     ],
+                    ['Free SO₂ (mg/L)',          '20 – 45'    ],
+                    ['Total SO₂ (mg/L)',         '< 150'      ],
+                    ['Residual Sugar (g/L)',     '< 2 – 10'   ],
+                    ['Turbidity (NTU)',          '< 3.0'      ],
+                  ].map(([param, range]) => (
+                    <tr>
+                      <td class="py-2 text-zinc-700">{param}</td>
+                      <td class="py-2 text-right font-mono text-zinc-600 text-xs">{range}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5: Storage & Packaging -->
+        <div class="py-16 border-b border-zinc-100">
+          <div class="flex items-center gap-4 mb-10">
+            <div class="w-12 h-12 bg-wine-950 rounded-xl flex items-center justify-center flex-shrink-0">
+              <span class="font-serif text-xl font-bold text-white">05</span>
+            </div>
+            <div>
+              <span class="text-wine-950 text-xs font-bold uppercase tracking-widest block">Storage &amp; Dispatch</span>
+              <h2 class="font-serif text-3xl font-bold text-zinc-900 leading-tight">Bulk Storage &amp; Packaging Formats</h2>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                format: 'Flexitank',
+                capacity: '20,000 – 24,000 L',
+                icon: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4',
+                desc: 'Food-grade PE liner inside 20ft ISO container. Most cost-effective for large ocean freight shipments. Suitable for all stable bulk wines.',
+                useCase: 'Ocean freight, large volumes',
+              },
+              {
+                format: 'IBC Totes',
+                capacity: '1,000 L per unit',
+                icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10',
+                desc: 'Stainless steel or food-grade composite IBCs. Stackable, compatible with standard pallet systems. Ideal for short-run buyers and blending operations.',
+                useCase: 'Road freight, SME buyers',
+              },
+              {
+                format: 'Oak Barrels',
+                capacity: '225 L (Bordeaux)',
+                icon: 'M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z',
+                desc: 'French and American oak barrels available for aged or partially-oaked lots. Buyers can specify new vs. used and toast level on forward-contract basis.',
+                useCase: 'Barrel-aged programs, premium lots',
+              },
+              {
+                format: 'Road Tanker',
+                capacity: 'Up to 30,000 L',
+                icon: 'M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0zM13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0',
+                desc: 'Insulated stainless steel road tankers for short-haul domestic and EU overland delivery. Temperature-maintained during transit. Direct cellar-to-cellar delivery possible.',
+                useCase: 'EU overland, direct delivery',
+              },
+            ].map(pkg => (
+              <div class="bg-white rounded-xl p-6 border border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-10 h-10 bg-wine-50 rounded-lg flex items-center justify-center mb-4">
+                  <svg class="w-5 h-5 text-wine-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d={pkg.icon} />
+                  </svg>
+                </div>
+                <h3 class="font-serif text-lg font-bold text-zinc-900 mb-1">{pkg.format}</h3>
+                <div class="text-wine-950 text-xs font-bold font-mono mb-3">{pkg.capacity}</div>
+                <p class="text-zinc-500 text-xs leading-relaxed mb-4">{pkg.desc}</p>
+                <div class="pt-3 border-t border-zinc-100">
+                  <span class="text-xs text-zinc-400 font-medium uppercase tracking-wide">Best for: </span>
+                  <span class="text-xs text-zinc-600">{pkg.useCase}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CERTIFICATIONS
+  ══════════════════════════════════════ -->
+  <section class="bg-zinc-50 py-20 border-t border-zinc-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="inline-block text-wine-950 text-xs font-bold uppercase tracking-widest mb-3">Compliance &amp; Standards</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-zinc-900">Certifications &amp; Regulatory Compliance</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {[
+          {
+            cert: 'ISO 22000:2018',
+            body: 'Bureau Veritas',
+            scope: 'Food Safety Management System — grape reception through dispatch.',
+            renewalCycle: 'Annual surveillance audit + 3-year recertification',
+          },
+          {
+            cert: 'FSSC 22000 v6',
+            body: 'SGS Portugal',
+            scope: 'GFSI-recognised food safety scheme. Covers all wine production activities.',
+            renewalCycle: 'Annual surveillance audit + 3-year recertification',
+          },
+          {
+            cert: 'OIV International Standards',
+            body: 'Internal compliance',
+            scope: 'All oenological practices conform to International Organisation of Vine and Wine standards.',
+            renewalCycle: 'Continuous; reviewed annually against OIV codex updates',
+          },
+          {
+            cert: 'EU Organic (Option)',
+            body: 'Ecocert Portugal',
+            scope: 'Organic grape lots available from certified partner estates (Reg. EU 2018/848).',
+            renewalCycle: 'Annual; subject to grape source certification status',
+          },
+          {
+            cert: 'Vegan Certified',
+            body: 'Vegan Society UK',
+            scope: 'Selected white and rosé lots processed without animal-derived fining agents.',
+            renewalCycle: 'Annual declaration and audit',
+          },
+          {
+            cert: 'Export Documentation',
+            body: 'IVV / Portuguese Customs',
+            scope: 'EUR.1, EUR.MED, VI-1, phytosanitary certificates issued per shipment.',
+            renewalCycle: 'Per-shipment; automated via IVV online system',
+          },
+        ].map(cert => (
+          <div class="bg-white rounded-xl p-6 border border-zinc-200 shadow-sm">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <span class="font-mono text-sm font-bold text-zinc-900">{cert.cert}</span>
+              <svg class="w-5 h-5 text-emerald-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="text-xs text-zinc-400 font-medium mb-2">Issued by: {cert.body}</div>
+            <p class="text-xs text-zinc-600 leading-relaxed mb-3">{cert.scope}</p>
+            <div class="pt-3 border-t border-zinc-100 text-xs text-zinc-400">{cert.renewalCycle}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       PROCESS CTA
+  ══════════════════════════════════════ -->
+  <section class="bg-wine-950 py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-4">
+        Confident in our process?
+      </h2>
+      <p class="text-zinc-300 text-base max-w-xl mx-auto mb-8">
+        Explore our current bulk inventory or submit a trade inquiry directly to our commercial team.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a
+          href="/catalog"
+          class="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-wine-950 font-semibold text-sm rounded-md hover:bg-zinc-100 transition-colors"
+        >
+          View Bulk Catalog
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 px-8 py-3.5 border border-zinc-500 text-white font-semibold text-sm rounded-md hover:border-white transition-colors"
+        >
+          Submit RFP
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
